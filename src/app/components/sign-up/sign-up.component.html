@@ -18,8 +18,25 @@
 
                       <div class="col-lg-4">
                             <label for="">Repeat password</label>
-                            <input type="password" name="password" class="form-control form-control-ml" formControlName='password'>
+                            <input type="password" name="password" class="form-control form-control-ml" formControlName='password_repeat'>
                         </div>
+                        <div *ngIf="password_repeat.invalid || password.invalid">
+                            <div>
+                                error
+                            </div>
+                            <div *ngIf="password_repeat.errors?.passwordNotEqual">
+                                Las contraseñas no coinciden
+                            </div>
+
+                            <div *ngIf="!password_repeat.errors?.passwordNotEqual">
+                                Las contraseñas no coinciden 2
+                            </div>
+                        </div>
+                        
+                        
+                            
+                        
+                      
                   </div> 
                   
                   <hr class="mb-4">
