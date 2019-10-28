@@ -1,4 +1,6 @@
-import { ValidatorFn, AbstractControl, ValidationErrors } from "@angular/forms";
+import { ValidatorFn, AbstractControl, ValidationErrors, AsyncValidator, AsyncValidatorFn } from "@angular/forms";
+import { HttpClient } from "@angular/common/http";
+import { UserService } from "../services/user.service";
 
 export class CustomValidator{
     static firstNameLenght () : ValidatorFn{
@@ -20,6 +22,13 @@ export class CustomValidator{
             }else{
                 return {'passwordNotEqual' : {value : firstPassword}};
             }
+        }
+    }
+
+    static emailExists(userService : UserService) : AsyncValidatorFn{
+        return (control : AbstractControl) : ValidationErrors | null => {
+            userService.checkIfEmailExists(control.value);
+            return null;
         }
     }
 }

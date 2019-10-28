@@ -19,7 +19,7 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {
     this.formUserGroup = new FormGroup({
-      email : new FormControl(this.user.email),
+      email : new FormControl(this.user.email,[],[CustomValidator.emailExists(this.userService)]),
       password : new FormControl(this.user.password),
       password_repeat : new FormControl(this.user.password)
     });
@@ -38,6 +38,10 @@ export class SignUpComponent implements OnInit {
 
   get password(){
     return this.formUserGroup.get('password');
+  }
+
+  get email(){
+    return this.formUserGroup.get('email');
   }
 
 

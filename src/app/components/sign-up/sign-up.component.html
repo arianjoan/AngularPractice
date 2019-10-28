@@ -21,15 +21,13 @@
                             <input type="password" name="password" class="form-control form-control-ml" formControlName='password_repeat'>
                         </div>
                         <div *ngIf="password_repeat.invalid || password.invalid">
-                            <div>
-                                error
-                            </div>
+                            
                             <div *ngIf="password_repeat.errors?.passwordNotEqual">
                                 Las contraseñas no coinciden
                             </div>
 
                             <div *ngIf="!password_repeat.errors?.passwordNotEqual">
-                                Las contraseñas no coinciden 2
+                                Las contraseñas no coinciden
                             </div>
                         </div>
                         

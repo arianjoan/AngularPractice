@@ -14,4 +14,10 @@ export class UserService {
     console.log(user);
     this.http.post('https://utn2019-avanzada2-tp8.herokuapp.com/sign-up',user).toPromise();
   }
+
+  checkIfEmailExists(email){
+    this.http.get('https://utn2019-avanzada2-tp8.herokuapp.com/users/identities?email=' + email).toPromise().then((response) => {
+      console.log(response.valueOf);
+    });
+  }
 }
