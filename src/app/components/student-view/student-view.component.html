@@ -1,0 +1,42 @@
+<main class="py-5">
+    <section class="mb-5">
+         <form *ngIf="formViewStudent" [formGroup]='formViewStudent'>
+            <div class="container">
+                <h3 class="mb-3">Edit Student</h3>
+                <div class="bg-light p-4">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label for="">Last Name</label>
+                            <input type="text" name="lastName"  class="form-control form-control-ml" formControlName='lastName'>
+                        </div>                         
+                        
+                        <div class="col-lg-4">
+                            <label for="">First Name</label>
+                            <input type="text" name="firstName"  class="form-control form-control-ml" formControlName='firstName'>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label for="">DNI</label>
+                            <input type="text" name="dni"  class="form-control form-control-ml" formControlName='dni'>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label for="">Email</label>
+                            <input type="email" name="email"  class="form-control form-control-ml" formControlName='email'>
+                        </div>
+
+                        <div class="col-lg-8">
+                            <label for="">Address</label>
+                            <input type="text" name="address"  class="form-control form-control-ml" formControlName='address'>
+                        </div>
+                    </div> 
+                    
+                    <hr class="mb-4">
+                    <button type="button" class="btn btn-primary" (click)='editStudent()'>Edit</button>                    
+                </div>
+            </div>
+         </form>
+    </section>
+</main>
