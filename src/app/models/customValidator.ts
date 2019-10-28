@@ -1,6 +1,7 @@
 import { ValidatorFn, AbstractControl, ValidationErrors, AsyncValidator, AsyncValidatorFn } from "@angular/forms";
 import { HttpClient } from "@angular/common/http";
 import { UserService } from "../services/user.service";
+import { Observable } from "rxjs";
 
 export class CustomValidator{
     static firstNameLenght () : ValidatorFn{
@@ -26,9 +27,16 @@ export class CustomValidator{
     }
 
     static emailExists(userService : UserService) : AsyncValidatorFn{
-        return (control : AbstractControl) : ValidationErrors | null => {
-            userService.checkIfEmailExists(control.value);
-            return null;
+        return (control : AbstractControl) : Promise<ValidationErrors> | null => {
+            return new Promise((resolve,reject) => {
+                userService.checkIfEmailExists(control.value).then((response) => {
+                    resolve (null);
+                }).catch((error) => {
+                    if (error.status === 409){
+                        resolve({'userExist' : true});
+                    }
+                })
+            })
         }
     }
 }
