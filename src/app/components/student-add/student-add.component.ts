@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Student } from 'src/app/models/student';
 import { StudentService } from 'src/app/services/student.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { StudentAsyncService } from 'src/app/services/student-async.service';
 import { CustomValidator } from 'src/app/models/customValidator';
 import { Router } from '@angular/router';
@@ -15,18 +15,17 @@ export class StudentAddComponent implements OnInit {
 
   student = new Student();
   studentForm : FormGroup;
-  studentFormFirstName : FormControl;
 
-  constructor(private studentService: StudentAsyncService, private router : Router) { }
+  constructor(private studentService: StudentAsyncService, private router : Router, private fb : FormBuilder) { }
 
   ngOnInit() {
 
-    this.studentForm = new FormGroup({
-      'firstName' : new FormControl(this.student.firstName,[CustomValidator.firstNameLenght()],[]),
-      'lastName' : new FormControl(this.student.lastName),
-      'email' : new FormControl(this.student.email),
-      'dni' : new FormControl(this.student.dni),
-      'address' : new FormControl(this.student.address)
+    this.studentForm = this.fb.group ({
+      'firstName' : [this.student.firstName,[CustomValidator.firstNameLenght()]],
+      'lastName' : [this.student.lastName],
+      'email' : [this.student.email],
+      'dni' : [this.student.dni],
+      'address' : [this.student.address]
     });
   }
 
