@@ -4,6 +4,7 @@ import { StudentService } from 'src/app/services/student.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { StudentAsyncService } from 'src/app/services/student-async.service';
 import { CustomValidator } from 'src/app/models/customValidator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-add',
@@ -16,7 +17,7 @@ export class StudentAddComponent implements OnInit {
   studentForm : FormGroup;
   studentFormFirstName : FormControl;
 
-  constructor(private studentService: StudentAsyncService) { }
+  constructor(private studentService: StudentAsyncService, private router : Router) { }
 
   ngOnInit() {
 
@@ -36,7 +37,8 @@ export class StudentAddComponent implements OnInit {
   addStudent()
   {
     this.student = this.studentForm.value;
-    console.log(this.student);
     this.studentService.add(this.student);
+    alert("El usuario fue agregado con exito!");
+    this.router.navigate(['/list']);
   }
 }
