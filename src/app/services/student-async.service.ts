@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../models/student';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -17,9 +18,8 @@ export class StudentAsyncService {
     }).toPromise();
   }
 
-  getAll() : Promise<any>{
-    return this.http.get('https://utn2019-avanzada2-tp8.herokuapp.com/api/students')
-      .toPromise();
+  getAll() : Observable<any>{
+    return this.http.get('https://utn2019-avanzada2-tp8.herokuapp.com/api/students');
   }
 
   getById(studentId: number) : Promise<any>{

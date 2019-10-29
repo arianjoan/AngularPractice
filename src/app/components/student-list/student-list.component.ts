@@ -9,14 +9,17 @@ import { StudentAsyncService } from 'src/app/services/student-async.service';
   styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent implements OnInit {
-  //studentList = new Array<Student>();
-  
-  studentList : Promise<Student[]>;
+
+  studentList : Student[];
 
   constructor(private studentService: StudentAsyncService) { }
 
   ngOnInit() {
-    this.studentList = this.studentService.getAll();
+    this.studentService.getAll().subscribe((arrayOfStudents) => {
+      this.studentList = arrayOfStudents as Student[];
+    },(error) => {
+      console.log("Error al traer los estudiantes>> " + error);
+    });
   }
 
 }

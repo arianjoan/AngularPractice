@@ -13,7 +13,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let student of (studentList | async)">
+                  <tr *ngFor="let student of (studentList)">
                     <th scope="row">{{ student.studentId  }}</th>
                     <td>{{ student.lastName }}</td>
                     <td>{{ student.firstName }}</td>

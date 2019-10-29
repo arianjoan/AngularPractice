@@ -27,13 +27,6 @@ export class SignUpComponent implements OnInit {
     
   }
 
-  /* checkPasswords(group: FormGroup) { 
-  let pass = group.controls.password.value;
-  let confirmPass = group.controls.password_repeat.value;
-
-  return pass === confirmPass ? null : { notSame: true }
-} */
-
   register(){
     this.user = this.formUserGroup.value;
     this.userService.register(this.user);
