@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Student } from 'src/app/models/student';
 import { CustomValidator } from 'src/app/models/customValidator';
@@ -15,35 +15,28 @@ export class SignUpComponent implements OnInit {
   private user : User = new User();
   private formUserGroup : FormGroup;
 
-  constructor(private userService : UserService) { }
+  constructor(private userService : UserService, private fb : FormBuilder) { }
+
 
   ngOnInit() {
-    this.formUserGroup = new FormGroup({
-      email : new FormControl(this.user.email,[],[CustomValidator.emailExists(this.userService)]),
-      password : new FormControl(this.user.password),
-      password_repeat : new FormControl(this.user.password)
-    });
-    this.formUserGroup.get('password').setValidators(CustomValidator.equalPassword(this.formUserGroup.get('password_repeat')));
-    this.formUserGroup.get('password_repeat').setValidators(CustomValidator.equalPassword(this.formUserGroup.get('password')));
+    this.formUserGroup = this.fb.group({
+      email : [this.user.email,[],[CustomValidator.emailExists]],
+      password : [this.user.password],
+      password_repeat : [this.user.password]
+    },{validator : CustomValidator.checkPasswords});
+    
   }
+
+  /* checkPasswords(group: FormGroup) { 
+  let pass = group.controls.password.value;
+  let confirmPass = group.controls.password_repeat.value;
+
+  return pass === confirmPass ? null : { notSame: true }
+} */
 
   register(){
     this.user = this.formUserGroup.value;
     this.userService.register(this.user);
   }
-
-  get password_repeat(){
-    return this.formUserGroup.get('password_repeat');
-  }
-
-  get password(){
-    return this.formUserGroup.get('password');
-  }
-
-  get email(){
-    return this.formUserGroup.get('email');
-  }
-
-
 
 }

@@ -1,51 +1,48 @@
 <main class="py-5">
-  <section class="mb-5">
-       <form *ngIf="formUserGroup" [formGroup]='formUserGroup'>
-          <div class="container">
-              <h3 class="mb-3">Sign up!</h3>
-              <div class="bg-light p-4">
+    <section class="mb-5">
+        <form *ngIf="formUserGroup" [formGroup]='formUserGroup'>
+            <div class="container">
+                <h3 class="mb-3">Sign up!</h3>
+                <div class="bg-light p-4">
 
-                  <div class="row">
-                      <div class="col-lg-4">
-                          <label for="">Email</label>
-                          <input type="email" name="email"  class="form-control form-control-ml" formControlName='email'>
-                      </div>
-                      <div *ngIf="email.errors?.userExist">
-                        El usuario ya esta registrado
-                      </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label for="">Email</label>
+                            <input type="email" name="email" class="form-control form-control-ml"
+                                formControlName='email'>
+                        </div>
+                        <div *ngIf="formUserGroup.get('email').hasError('userExist')">
+                            El usuario ya esta registrado
+                        </div>
 
-                      <div class="col-lg-4">
-                          <label for="">Password</label>
-                          <input type="password" name="password" class="form-control form-control-ml" formControlName='password'>
-                      </div>
+                        <div class="col-lg-4">
+                            <label for="">Password</label>
+                            <input type="password" name="password" class="form-control form-control-ml"
+                                formControlName='password'>
+                        </div>
 
-                      <div class="col-lg-4">
+                        <div class="col-lg-4">
                             <label for="">Repeat password</label>
-                            <input type="password" name="password" class="form-control form-control-ml" formControlName='password_repeat'>
+                            <input type="password" name="password" class="form-control form-control-ml"
+                                formControlName='password_repeat'>
                         </div>
-                        <div *ngIf="password_repeat.invalid || password.invalid">
-                            <div>
-                                {{password_repeat.invalid}} && {{password.invalid}}
-                            </div>
-                            <div *ngIf="password_repeat.errors?.passwordNotEqual">
-                                Las contraseñas no coinciden 1
-                            </div>
 
-                            <div *ngIf="password.errors?.passwordNotEqual">
-                                Las contraseñas no coinciden 2
-                            </div>
+                        <div *ngIf="formUserGroup.hasError('notSame')">
+                            Las contraseñas no coinciden
                         </div>
-                        
-                        
-                            
-                        
-                      
-                  </div> 
-                  
-                  <hr class="mb-4">
-                  <button type="button" class="btn btn-primary" (click)="register()">Sign Up!</button>                    
-              </div>
-          </div>
-       </form>
-  </section>
+
+
+
+
+
+
+
+                    </div>
+
+                    <hr class="mb-4">
+                    <button type="button" class="btn btn-primary" (click)="register()">Sign Up!</button>
+                </div>
+            </div>
+        </form>
+    </section>
 </main>

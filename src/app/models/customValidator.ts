@@ -1,4 +1,4 @@
-import { ValidatorFn, AbstractControl, ValidationErrors, AsyncValidator, AsyncValidatorFn } from "@angular/forms";
+import { ValidatorFn, AbstractControl, ValidationErrors, AsyncValidator, AsyncValidatorFn, FormGroup } from "@angular/forms";
 import { HttpClient } from "@angular/common/http";
 import { UserService } from "../services/user.service";
 import { Observable } from "rxjs";
@@ -39,4 +39,11 @@ export class CustomValidator{
             })
         }
     }
+
+    static checkPasswords(group: FormGroup) { 
+        let pass = group.controls.password.value;
+        let confirmPass = group.controls.password_repeat.value;
+      
+        return pass === confirmPass ? null : { notSame: true }
+      }
 }
