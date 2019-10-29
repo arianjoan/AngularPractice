@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
@@ -13,8 +14,9 @@ export class LogInComponent implements OnInit {
 
   formGroupLogIn : FormGroup
   user : User = new User();
+  badCredentials : String = null;
 
-  constructor(private userService : UserService) { }
+  constructor(private userService : UserService, private router : Router) { }
 
   ngOnInit() {
     this.formGroupLogIn = new FormGroup({
@@ -25,12 +27,13 @@ export class LogInComponent implements OnInit {
 
   logIn(){
     this.user = this.formGroupLogIn.value;
-    console.log(this.user);
     let print = this.userService.logIn(this.user);
     print.then((response) => {
-      console.log(response);
+      this.router.navigate(['/list']);
+    }).catch((error) => {
+      this.badCredentials = "Usuario y/o contraseña incorrecta";
+      console.log(error);
     })
-    return print;
   }
 
 }

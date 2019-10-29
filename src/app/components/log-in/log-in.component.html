@@ -17,6 +17,9 @@
                                 <input type="text" name="address" class="form-control form-control-ml"
                                     formControlName='password'>
                             </div>
+                            <div *ngIf="badCredentials">
+                                {{badCredentials}}
+                            </div>
                         </div>
 
                         <hr class="mb-4">

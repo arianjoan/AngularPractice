@@ -14,7 +14,7 @@ const appRoutes: Routes = [
   { path: 'list', component: StudentListComponent },  
   { path: 'register', component: SignUpComponent  },  
   { path: 'login', component: LogInComponent  },  
-  { path: '', redirectTo: '/list', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component : PageNotFoundComponent }
 ];
 
