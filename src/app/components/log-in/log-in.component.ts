@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/services/storage/localStorage.service';
 
 @Component({
   selector: 'app-log-in',
@@ -16,13 +17,16 @@ export class LogInComponent implements OnInit {
   user : User = new User();
   badCredentials : String = null;
 
-  constructor(private userService : UserService, private router : Router) { }
+  constructor(private userService : UserService, private router : Router, private storage : LocalStorageService) { }
 
   ngOnInit() {
     this.formGroupLogIn = new FormGroup({
       email : new FormControl(this.user.email),
       password : new FormControl(this.user.password)
     })
+
+    this.storage.addToStorage('algo');
+    console.log(this.storage.getFromStorage('title'));
   }
 
   logIn(){

@@ -12,6 +12,8 @@ import { StudentService } from './services/student.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { StorageServiceModule } from 'ngx-webstorage-service';
+import { LocalStorageService } from './services/storage/localStorage.service';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,10 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    StorageServiceModule,
+  ],
+  providers: [
+    LocalStorageService
   ],  
   bootstrap: [AppComponent]
 })
