@@ -8,12 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { StudentAddComponent } from './components/student-add/student-add.component';
 import { StudentListComponent } from './components/student-list/student-list.component';
 import { StudentViewComponent } from './components/student-view/student-view.component';
-import { StudentService } from './services/student.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { StorageServiceModule } from 'ngx-webstorage-service';
+import { AuthGuard } from './auth/auth.guard';
 import { LocalStorageService } from './services/storage/localStorage.service';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { LocalStorageService } from './services/storage/localStorage.service';
     StudentViewComponent,
     PageNotFoundComponent,
     LogInComponent,
-    SignUpComponent
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,9 +34,10 @@ import { LocalStorageService } from './services/storage/localStorage.service';
     ReactiveFormsModule,
     StorageServiceModule,
   ],
-  providers: [
+  providers: [ 
+    AuthGuard,
     LocalStorageService
-  ],  
+   ],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

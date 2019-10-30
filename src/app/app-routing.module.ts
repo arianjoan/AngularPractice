@@ -7,11 +7,13 @@ import { StudentListComponent } from './components/student-list/student-list.com
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { LogInComponent } from './components/log-in/log-in.component';
+import { AuthGuard } from './auth/auth.guard';
+
 
 const appRoutes: Routes = [
   { path: 'add', component: StudentAddComponent },
   { path: 'view/:id', component: StudentViewComponent },
-  { path: 'list', component: StudentListComponent },  
+  { path: 'list', component: StudentListComponent, canActivate: [AuthGuard] },  
   { path: 'register', component: SignUpComponent  },  
   { path: 'login', component: LogInComponent  },  
   { path: '', redirectTo: '/login', pathMatch: 'full' },

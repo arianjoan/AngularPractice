@@ -30,6 +30,8 @@ export class LogInComponent implements OnInit {
     this.user = this.formGroupLogIn.value;
     let print = this.userService.logIn(this.user);
     print.then((response) => {
+      this.storage.addToStorage('token',response);
+      console.log(this.storage.getFromStorage('token'));
       this.router.navigate(['/list']);
     }).catch((error) => {
       this.badCredentials = "Usuario y/o contraseña incorrecta";
