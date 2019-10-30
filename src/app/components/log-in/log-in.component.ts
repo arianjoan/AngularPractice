@@ -24,9 +24,6 @@ export class LogInComponent implements OnInit {
       email : new FormControl(this.user.email),
       password : new FormControl(this.user.password)
     })
-
-    this.storage.addToStorage('algo');
-    console.log(this.storage.getFromStorage('title'));
   }
 
   logIn(){

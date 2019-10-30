@@ -33,7 +33,6 @@ export class StudentAddComponent implements OnInit {
       'address' : [this.student.address]
     });
 
-    console.log(this.storage.getFromStorage('title'));
   }
 
   get firstName(){
