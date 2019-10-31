@@ -13,10 +13,10 @@
                         <div class="col-lg-4">
                             <label for="">First Name</label>
                             <input type="text" name="firstName"  class="form-control form-control-ml" formControlName='firstName'>
-                            <div *ngIf="firstName.invalid">
+                            <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
                                     <div *ngIf='firstName.errors.shortName'>
-                                            El nombre es demasiado corto
-                                        </div>
+                                        El nombre es demasiado corto
+                                    </div>
                             </div>
                             
                             
@@ -26,6 +26,12 @@
                             <label for="">DNI</label>
                             <input type="text" name="dni"  class="form-control form-control-ml" formControlName='dni'>
                         </div>
+                        <div *ngIf="dni.dirty || dni.touched">
+                            <div *ngIf='dni.errors?.dniLengthError'>
+                                El DNI debe contener 8 numeros
+                            </div>
+                        </div>
+                        
                     </div>
 
                     <div class="row">
@@ -41,7 +47,7 @@
                     </div> 
                     
                     <hr class="mb-4">
-                    <button type="button" class="btn btn-primary" (click)='addStudent()'>Add</button>                    
+                    <button type="button" class="btn btn-primary" (click)='addStudent()' [disabled]="studentForm.invalid">Add</button>                    
                 </div>
             </div>
          </form>

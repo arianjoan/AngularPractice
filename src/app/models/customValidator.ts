@@ -46,4 +46,14 @@ export class CustomValidator{
       
         return pass === confirmPass ? null : { notSame: true }
       }
+
+      static dniLength() : ValidatorFn {
+          return (control : AbstractControl) : ValidationErrors | null => {
+            if (control.value && control.value.length == 8){
+                return null;
+            }else{
+                return { 'dniLengthError' : {value : control.value}};
+            }
+          }
+      }
 }

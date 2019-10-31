@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Student } from 'src/app/models/student';
 import { StudentService } from 'src/app/services/student.service';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { StudentAsyncService } from 'src/app/services/student-async.service';
 import { CustomValidator } from 'src/app/models/customValidator';
 import { Router } from '@angular/router';
@@ -27,10 +27,10 @@ export class StudentAddComponent implements OnInit {
 
     this.studentForm = this.fb.group ({
       'firstName' : [this.student.firstName,[CustomValidator.firstNameLenght()]],
-      'lastName' : [this.student.lastName],
-      'email' : [this.student.email],
-      'dni' : [this.student.dni],
-      'address' : [this.student.address]
+      'lastName' : [this.student.lastName,[Validators.required]],
+      'email' : [this.student.email,[Validators.required]],
+      'dni' : [this.student.dni,[Validators.required,CustomValidator.dniLength()]],
+      'address' : [this.student.address,[Validators.required]]
     });
 
   }
@@ -45,5 +45,9 @@ export class StudentAddComponent implements OnInit {
     this.studentService.add(this.student);
     alert("El usuario fue agregado con exito!");
     this.router.navigate(['/list']);
+  }
+
+  get dni(){
+    return this.studentForm.get('dni');
   }
 }
