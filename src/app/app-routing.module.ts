@@ -12,8 +12,8 @@ import { LogOutComponent } from './components/log-out/log-out.component';
 
 
 const appRoutes: Routes = [
-  { path: 'add', component: StudentAddComponent },
-  { path: 'view/:id', component: StudentViewComponent },
+  { path: 'add', component: StudentAddComponent, canActivate: [AuthGuard] },
+  { path: 'view/:id', component: StudentViewComponent, canActivate: [AuthGuard] },
   { path: 'list', component: StudentListComponent, canActivate: [AuthGuard] },  
   { path: 'register', component: SignUpComponent  },  
   { path: 'login', component: LogInComponent  },  
