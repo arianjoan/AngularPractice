@@ -7,12 +7,16 @@ export class LocalStorageService {
   constructor(@Inject(LOCAL_STORAGE) private storage : StorageService) { }
 
   public addToStorage(key : string, value : any){
-    const storage = this.storage.get('title') || [];
+    const storage = this.storage.get(key) || [];
     storage.push(value);
     this.storage.set(key,storage);
   }
 
   public getFromStorage(key : string){
     return this.storage.get(key);
+  }
+
+  public deleteStorage(){
+    this.storage.clear();
   }
 }
