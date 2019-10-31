@@ -31,16 +31,10 @@
                             Las contraseñas no coinciden
                         </div>
 
-
-
-
-
-
-
                     </div>
 
                     <hr class="mb-4">
-                    <button type="button" class="btn btn-primary" (click)="register()">Sign Up!</button>
+                    <button type="button" class="btn btn-primary" (click)="register()" [disabled]="formUserGroup.invalid">Sign Up!</button>
                 </div>
             </div>
         </form>
