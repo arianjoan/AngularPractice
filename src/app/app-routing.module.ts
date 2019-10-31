@@ -8,6 +8,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { AuthGuard } from './auth/auth.guard';
+import { LogOutComponent } from './components/log-out/log-out.component';
 
 
 const appRoutes: Routes = [
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
   { path: 'list', component: StudentListComponent, canActivate: [AuthGuard] },  
   { path: 'register', component: SignUpComponent  },  
   { path: 'login', component: LogInComponent  },  
+  { path: 'logout', component: LogOutComponent  },  
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component : PageNotFoundComponent }
 ];

@@ -15,6 +15,7 @@ import { StorageServiceModule } from 'ngx-webstorage-service';
 import { AuthGuard } from './auth/auth.guard';
 import { LocalStorageService } from './services/storage/localStorage.service';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { LogOutComponent } from './components/log-out/log-out.component';
 
 
 
@@ -28,6 +29,7 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
     PageNotFoundComponent,
     LogInComponent,
     SignUpComponent,
+    LogOutComponent,
   ],
   imports: [
     BrowserModule,
