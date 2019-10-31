@@ -14,6 +14,9 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { AuthGuard } from './auth/auth.guard';
 import { LocalStorageService } from './services/storage/localStorage.service';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+
+
 
 
 @NgModule({
@@ -36,7 +39,12 @@ import { LocalStorageService } from './services/storage/localStorage.service';
   ],
   providers: [ 
     AuthGuard,
-    LocalStorageService
+    LocalStorageService,
+    {
+      provide: JWT_OPTIONS,
+      useValue: JWT_OPTIONS
+     },
+      JwtHelperService
    ],  
   bootstrap: [AppComponent]
 })
